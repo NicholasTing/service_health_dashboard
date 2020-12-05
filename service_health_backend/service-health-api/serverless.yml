@@ -42,6 +42,7 @@ functions:
       - http:
           path: service
           method: post
+          authorizer: aws_iam
 
   get:
     handler: service/get_service.main
@@ -49,6 +50,7 @@ functions:
       - http:
           path: service/{service_id}
           method: get
+          authorizer: aws_iam
 
   list:
     handler: service/list_service.main
@@ -56,17 +58,20 @@ functions:
       - http:
           path: service
           method: get
+          authorizer: aws_iam
 
   update:
     handler: service/update_service.main
     events:
       - http:
-          path: notes/{service_id}
+          path: service/{service_id}
           method: put
+          authorizer: aws_iam
 
   delete:
     handler: service/delete_service.main
     events:
       - http:
-          path: notes/{service_id}
+          path: service/{service_id}
           method: delete
+          authorizer: aws_iam

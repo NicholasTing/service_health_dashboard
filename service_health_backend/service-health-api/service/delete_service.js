@@ -5,7 +5,7 @@ export const main = handler(async (event, context) => {
   const params = {
     TableName: process.env.tableName,
     Key: {
-      user_id: "123",
+      user_id: event.requestContext.identity.cognitoIdentityId,
       service_id: event.pathParameters.service_id,
     },
   };
