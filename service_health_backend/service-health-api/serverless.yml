@@ -9,16 +9,64 @@ plugins:
   - serverless-offline
   - serverless-dotenv-plugin # Load .env as environment variables
 
+custom:
+  bundle:
+    linting: false
+
 provider:
   name: aws
   runtime: nodejs12.x
   stage: prod
-  region: us-east-1
+  region: ap-southeast-2
+
+  environment:
+    tableName: service-health-table
+
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:Scan
+      - dynamodb:Query
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+      - dynamodb:DescribeTable
+    Resource: "arn:aws:dynamodb:ap-southeast-2:*:*"
 
 functions:
-  hello:
-    handler: handler.hello
+
+  create:
+    handler: service/create_service.main
     events:
       - http:
-          path: hello
+          path: service
+          method: post
+
+  get:
+    handler: service/get_service.main
+    events:
+      - http:
+          path: service/{service_id}
           method: get
+
+  list:
+    handler: service/list_service.main
+    events:
+      - http:
+          path: service
+          method: get
+
+  update:
+    handler: service/update_service.main
+    events:
+      - http:
+          path: notes/{service_id}
+          method: put
+
+  delete:
+    handler: service/delete_service.main
+    events:
+      - http:
+          path: notes/{service_id}
+          method: delete
