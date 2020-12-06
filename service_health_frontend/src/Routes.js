@@ -6,6 +6,8 @@ import Signup from "./containers/Signup/Signup";
 import Login from "./containers/Login/Login";
 import NewService from "./containers/NewService/NewService";
 import Services from "./containers/Service/Service";
+import AuthenticatedRoute from "./components/AuthenticatedRoute/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute/UnauthenticatedRoute";
 
 export default function Routes() {
   return (
@@ -13,18 +15,18 @@ export default function Routes() {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route exact path="/login">
+      <UnauthenticatedRoute exact path="/login">
         <Login />
-      </Route>
-      <Route exact path="/signup">
+      </UnauthenticatedRoute>
+      <UnauthenticatedRoute exact path="/signup">
         <Signup />
-      </Route>
-      <Route exact path="/services/new">
+      </UnauthenticatedRoute>
+      <AuthenticatedRoute exact path="/services/new">
         <NewService />
-      </Route>
-      <Route exact path="/services/:id">
+      </AuthenticatedRoute>
+      <AuthenticatedRoute exact path="/services/:id">
         <Services /> 
-      </Route>
+      </AuthenticatedRoute>
       <Route>
         <NotFound />
       </Route>
