@@ -4,8 +4,9 @@ import { API, Storage } from "aws-amplify";
 import { onError } from "../../libs/errorLib";
 import Form from "react-bootstrap/Form";
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
-import config from "../../config";
 import "./Service.css";
+
+const MAX_ATTACHMENT_SIZE = 10000000
 
 export default function Services() {
   const file = useRef(null);
@@ -58,9 +59,9 @@ export default function Services() {
   
     event.preventDefault();
   
-    if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
+    if (file.current && file.current.size > MAX_ATTACHMENT_SIZE) {
       alert(
-        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
+        `Please pick a file smaller than ${MAX_ATTACHMENT_SIZE /
           1000000} MB.`
       );
       return;

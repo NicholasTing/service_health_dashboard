@@ -4,9 +4,10 @@ import { useHistory } from "react-router-dom";
 import LoaderButton from "../../components/LoaderButton/LoaderButton";
 import { onError } from "../../libs/errorLib";
 import { s3Upload } from "../../libs/awsLib";
-import config from "../../config";
 import { API } from "aws-amplify";
 import "./NewService.css";
+
+const MAX_ATTACHMENT_SIZE = 10000000
 
 export default function NewService() {
   const file = useRef(null);
@@ -25,10 +26,10 @@ export default function NewService() {
   async function handleSubmit(event) {
     event.preventDefault();
   
-    if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
+    if (file.current && file.current.size > MAX_ATTACHMENT_SIZE) {
       alert(
         `Please pick a file smaller than ${
-          config.MAX_ATTACHMENT_SIZE / 1000000
+          MAX_ATTACHMENT_SIZE / 1000000
         } MB.`
       );
       return;
