@@ -54,7 +54,7 @@ export default function Services() {
   }
   
   async function handleSubmit(event) {
-    let attachment;
+    // let attachment;
   
     event.preventDefault();
   

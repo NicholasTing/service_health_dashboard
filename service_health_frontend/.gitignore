@@ -24,3 +24,5 @@ yarn-error.log*
 
 # dev files
 /src/config.js
+.eslintcache
+.env
