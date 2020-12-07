@@ -1,0 +1,6 @@
+{
+  "name": "service-health-backend-infra",
+  "type": "@serverless-stack/resources",
+  "stage": "dev",
+  "region": "ap-southeast-2"
+}
