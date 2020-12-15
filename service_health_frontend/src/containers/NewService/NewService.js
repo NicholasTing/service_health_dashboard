@@ -29,7 +29,7 @@ export default function NewService() {
     if (file.current && file.current.size > MAX_ATTACHMENT_SIZE) {
       alert(
         `Please pick a file smaller than ${
-          MAX_ATTACHMENT_SIZE / 1000000
+          MAX_ATTACHMENT_SIZE / 10000000
         } MB.`
       );
       return;
